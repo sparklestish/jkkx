@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Phone Number Verification</title>
+  <meta name="format-detection" content="telephone=no">
+   <meta name="msapplication-tap-highlight" content="no">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+   <meta charset="utf-8" />
+  <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/jquery/waves/dist/waves.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/app.css" type="text/css" />
+  <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="../scripts/jq.js"></script>
+    <script type="text/javascript">
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    if(localStorage.login=="true" && filename == 'verify.html'){
+      window.location.href = "menu.html?phonenum="+localStorage.phone;
+    }
+    else if(localStorage.login=="false" && filename != 'login.html'){
+      window.location.href = "login.html";
+    }
+    </script>
+  <script type="text/javascript">
+   
+    // Wait for device API libraries to load
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function chkOnline()
+      {
+      //add your own functionalities, if user is online
+       
+      }
+      function chkOffline()
+      {
+      //add your own functionalities, if user is offline
+       window.location.href="noconnection.html";
+      }
+    // device APIs are available
+    function onDeviceReady() {
+        document.addEventListener("online",chkOnline,false);
+        document.addEventListener("offline",chkOffline,false);
+        //alert("device ready event occured");
+         //PUSH NOTIFICATIONS SETTINGS
+
+      // console.log("Device Ready")
+      // var push = PushNotification.init({ "android": {"senderID": "785389363477", "sound": "true"},
+      // "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+
+      // push.on('registration', function(data) {
+      // console.log(data.registrationId);
+      // $("#gcm_id").html(data.registrationId);
+      // });
+
+      // push.on('notification', function(data) {
+      // console.log(data.message);
+      // alert(data.title+" Message: " +data.message);
+      // // data.title,
+      // // data.count,
+      // // data.sound,
+      // // data.image,
+      // // data.additionalData
+      // });
+
+      // push.on('error', function(e) {
+      // console.log(e.message);
+      // });
+    }
+  </script>
+  <!-- Validation of Text Feild For Phone Numbers-->
+   <script language="javascript" type="text/javascript">
+      function limitText(limitField, limitNum) {
+          if (limitField.value.length > limitNum) {
+              limitField.value = limitField.value.substring(0, limitNum);
+          }
+      }
+    </script>
+
+    <script>
+      function isNumberKey(evt){
+          var charCode = (evt.which) ? evt.which : event.keyCode
+          if (charCode > 31 && (charCode < 48 || charCode > 57))
+              return false;
+          return true;
+      }    
+      </script>
+<!-- Validation of Text Feild For Phone Numbers-->
+</head>
+<body onload="onLoad()">
+<div class="app">
+  
+
+
+
+  <!-- content -->
+  <div id="content" class="app-content" role="main">
+    <div class="box">
+          <!-- Content Navbar -->
+    <div class="navbar md-whiteframe-z1 no-radius blue">
+      <!-- Open side - Naviation on mobile -->
+      <a md-ink-ripple href="index.html" class="navbar-item pull-left visible-xs visible-sm"><i class="fa fa-chevron-left"></i>  Back </a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      
+      <!-- / -->
+      <!-- Common tools -->
+   <ul class="nav nav-sm navbar-tool pull-right">
+        <!-- <li>
+          <a md-ink-ripple ui-toggle-class="show" target="#search">
+            <i class="mdi-action-search i-24"></i>
+          </a>
+        </li> -->
+        <li>
+          <a md-ink-ripple data-toggle="modal" data-target="#user">
+              Phone Verification
+          </a>
+        </li>
+        <!-- <li class="dropdown">
+          <a md-ink-ripple data-toggle="dropdown">
+            <i class="mdi-navigation-more-vert i-24"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-scale pull-right pull-up text-color">
+            <li><a href>Single-column view</a></li>
+            <li><a href>Sort by date</a></li>
+            <li><a href>Sort by name</a></li>
+            <li class="divider"></li>
+            <li><a href>Help &amp; feedback</a></li>
+          </ul>
+        </li> -->
+      </ul> 
+      <div class="pull-right" ui-view="navbar@"></div>
+      <!-- / -->
+    
+    </div>
+   
+     <!-- Content -->
+
+      <div class="box-row">
+        <div class="box-cell">
+          <div class="box-inner padding">
+            
+
+<div class="card" style="height: 100%;">
+  <div class="card-heading" style="margin-left: 20px;">
+    <h2> Verify Your Phone Number</h2>
+  </div>
+
+  <div class="card-body">
+  <div class="arrow_box" style="display:none; margin-bottom: 20px; padding-left: 10px; padding-right: 10px;">
+      dfsbsfgbsgfsbbgfs
+    </div>
+    <div class="row row-sm">
+   
+        <form method="get" action="activate.html">
+      <div class="col-sm-12">
+        <div class="md-form-group">
+         <!-- <p id="gcm_id"></p> -->
+          <label class="text-justify;">This app will send you one SMS message to verify your phone number. To verify yourself, please enter your phone number below. Note, data charges may apply.</label>
+        </div>
+      </div>
+
+       
+      <div class="col-sm-6">
+        <div class="md-form-group float-label">
+          <select class="md-input">
+              <option selected="selected"> (+234)  Nigeria</option>
+          </select>
+          
+        </div>
+      </div>
+      <div class="col-sm-6">
+      <input type="hidden" id="countrycode" value="234">
+        <div class="md-form-group float-label">
+          <input class="md-input" type="number" name="phonenum" id="phonenum"  onkeypress="return isNumberKey(event)" onKeyDown="limitText(this,10);" 
+onKeyUp="limitText(this,10);" placeholder="your 10 digit phone number" required>
+             
+        </div>
+      </div>
+    
+
+     <div class="p-v-lg text-center" style=" margin-top:20px;">
+      <div class="m-b">
+      <input type="submit" value="Verify" class="md-btn md-raised pink p-h-md" id="verify" style="padding: 10px 80px; background: rgba(245, 76, 63, 0.89);"></div>
+      <br />
+      <div><a href="login.html"> Login to your account? </a></div>
+    </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / content -->
+
+</div>
+
+<!-- <script src="../libs/jquery/jquery/dist/jquery.js"></script> -->
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../libs/jquery/waves/dist/waves.js"></script>
+
+<script src="../scripts/ui-load.js"></script>
+<script src="../scripts/ui-jp.config.js"></script>
+<script src="../scripts/ui-jp.js"></script>
+<script src="../scripts/ui-nav.js"></script>
+<script src="../scripts/ui-toggle.js"></script>
+<script src="../scripts/ui-form.js"></script>
+<script src="../scripts/ui-waves.js"></script>
+<script src="../scripts/ui-client.js"></script>
+
+
+<script type="text/javascript">
+ $(document).ready(function()
+ {
+    //Login Function
+    $("#verify").click(function(){
+      
+//              $( "#loginform" ).click(function( event ) {
+//   event.preventDefault();
+ 
+// });
+      var countrycode=$("#countrycode").val();
+      var phone=$("#phonenum").val();
+      var dataString="phonenum="+phone;
+      var phonecombination = countrycode+phone;
+      var phonecombinationurl ="phonenumber="+countrycode+phone;
+      // alert(phonecombination);
+   
+      if($.trim(phone).length>0)
+    {
+      $.ajax({
+        type: "GET",
+        url: "http://waecresultschecker.com/mobile/verify.php",
+        data: phonecombinationurl,
+        crossDomain: true,
+        cache: false,
+        dataType:'json',
+        beforeSend: function(){ $("#verify").val('please wait...');},
+        success: function(data){
+          if(data.success == false) 
+                {  
+                   //  alert(dataString);
+            $(".arrow_box").css("display", "block");
+            $(".arrow_box").html('Unable to process request. please try again later');
+            //alert("Login error");
+            setTimeout(function() {
+            $('.arrow_box').fadeOut('slow');
+            }, 4000);
+            $("#verify").val('Verify');
+                } 
+            else if(data.success == 'exist') 
+                {  
+                  $(".arrow_box").css("display", "block");
+                   $(".arrow_box").html('There is an account already associated with your number, please try with another number');
+            //alert("Login error");
+           setTimeout(function() {
+            $('.arrow_box').fadeOut('slow');
+            }, 4000);
+            $("#verify").val('Verify');
+                } 
+                else { 
+            var URL = "activate.html?phonenum="+phonecombination;
+            setTimeout(function(){ window.location = URL; }, 2000);
+                      
+                    }  
+        }
+      });
+    }return false;
+
+    });
+ });
+ </script>
+</body>
+</html>

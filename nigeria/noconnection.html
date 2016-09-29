@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>No Connection</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/jquery/waves/dist/waves.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/app.css" type="text/css" />
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript">
+   
+    // Wait for device API libraries to load
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function chkOnline()
+      {
+      //add your own functionalities, if user is online
+       
+      }
+      function chkOffline()
+      {
+      //add your own functionalities, if user is offline
+       window.location.href="noconnection.html";
+      }
+    // device APIs are available
+    function onDeviceReady() {
+        document.addEventListener("online",chkOnline,false);
+        document.addEventListener("offline",chkOffline,false);
+        //alert("device ready event occured");
+    }
+  </script>
+</head>
+<body onload="onLoad()" style="background: #F7F7F7;">
+<div class="app">
+  
+
+
+
+  <!-- content -->
+  <div id="content" class="app-content" role="main">
+    <div class="box">
+          <!-- Content Navbar -->
+    <div class="navbar md-whiteframe-z1 no-radius blue">
+      <!-- Open side - Naviation on mobile -->
+      <a md-ink-ripple onclick="history.back(-1)" class="navbar-item pull-left visible-xs visible-sm"><i class="fa fa-chevron-left"></i>  Back </a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      
+      <!-- / -->
+      <!-- Common tools -->
+   <ul class="nav nav-sm navbar-tool pull-right">
+    
+      </ul> 
+      <div class="pull-right" ui-view="navbar@"></div>
+      <!-- / -->
+    
+    </div>
+   
+     <!-- Content -->
+
+      <div class="box-row">
+        <div class="box-cell">
+          <div class="box-inner padding" style="background: #F7F7F7;">
+            
+
+<div class="card" style="height: 100%; background: #F7F7F7;">
+  <div class="wrappercenter" >
+<!--  <img src="images/noconnection.png" align="middle" style="margin-left: auto; margin-right: auto; ">
+ -->  </div>
+</div>
+<style type="text/css">
+
+.wrappercenter {
+   position: absolute;
+
+   width: 100%;
+   height: 100%;
+   margin-top: auto; /* Half the height */
+   margin-left: auto; /* Half the width */
+   background:#F7F7F7 url(../images/noconnection.png) center center no-repeat;
+   /*background-size: cover;*/
+}
+</style>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / content -->
+
+</div>
+
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../libs/jquery/waves/dist/waves.js"></script>
+
+<script src="../scripts/ui-load.js"></script>
+<script src="../scripts/ui-jp.config.js"></script>
+<script src="../scripts/ui-jp.js"></script>
+<script src="../scripts/ui-nav.js"></script>
+<script src="../scripts/ui-toggle.js"></script>
+<script src="../scripts/ui-form.js"></script>
+<script src="../scripts/ui-waves.js"></script>
+<script src="../scripts/ui-client.js"></script>
+
+
+</body>
+</html>

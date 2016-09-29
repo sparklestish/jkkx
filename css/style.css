@@ -1,0 +1,77 @@
+body {
+  font-family: Segoe, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background-color: rgb(227,229,231);
+}
+
+.items-holder {
+  max-width: 100%;
+  /*margin-right: auto;
+  margin-left: auto;*/
+  text-align: center;
+}
+
+.mp-cart-items {
+  width: 100%;
+  padding-top: 20px;
+   text-align: center;
+  box-shadow: 5px 5px 5px 2px rgba(175,175,175,0.4);
+  background-color: white;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.mp-cart-items {
+  text-align: left;
+}
+
+.product-name {
+  color: rgb(241, 126, 33);
+}
+
+.product-price {
+  font-weight: bolder;
+}
+
+.product-img {
+  width: 100%;
+  height: auto;
+}
+
+.mp-cart-items button {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.mp-cart-items:hover {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 10px 10px 7px 5px rgba(175,175,175,0.4);
+}
+
+.mp-cart-items:first-child:hover {
+  margin-top: 0;
+}
+
+.mp-cart-items:last-child:hover {
+  margin-bottom: 0;
+}
+
+.mp-view-cart {
+  width: 440px;
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  display: block;
+  background: rgb(241, 126, 33);
+}
+
+button {
+  border: none;
+  padding: 10px;
+  text-align: center;
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Check Results</title>
+  <meta name="format-detection" content="telephone=no">
+   <meta name="msapplication-tap-highlight" content="no">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+   <meta charset="utf-8" />
+  <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/jquery/waves/dist/waves.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/app.css" type="text/css" />
+  <script type="text/javascript" src="../cordova.js"></script>
+  
+ <script type="text/javascript" src="../inappbrowser.js"></script>
+    <script type="text/javascript" src="../scripts/jq.js"></script>
+   
+      <script type="text/javascript">
+   
+    // Wait for device API libraries to load
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function chkOnline()
+      {
+      //add your own functionalities, if user is online
+       
+      }
+      function chkOffline()
+      {
+      //add your own functionalities, if user is offline
+       window.location.href="noconnection.html";
+      }
+    // device APIs are available
+    function onDeviceReady() {
+        document.addEventListener("online",chkOnline,false);
+        document.addEventListener("offline",chkOffline,false);
+       
+    }
+  </script>
+    
+
+<script type="text/javascript" language="javascript">
+
+   var phonenum = window.location.search.substring(10);
+
+     $(document).ready(function() {
+
+          $.getJSON('http://waecresultschecker.com/mobile/userinfodisplay.php?phonenum='+phonenum, function(jd) {  
+          
+           //   $('#logged_in_user').val(jd.username);
+           // $('#user_email').val(jd.email);
+         // document.getElementById('user_email').value = jd.username;
+       
+       // alert(jd.fullname);
+          $('#logged_in_user').html(jd.fullname);
+         $('#user_email').html(jd.email);
+
+     var menucard = document.getElementById('menu'); //or grab it by tagname etc
+         menucard.href="menu.html?phone="+jd.phone+"&country=nigeria";
+     
+         var newbuycard = document.getElementById('buy_card'); //or grab it by tagname etc
+         newbuycard.href="checkout.html?phone="+jd.phone+"&country=nigeria";
+
+          var newcheckresults = document.getElementById('check_results'); //or grab it by tagname etc
+         newcheckresults.href = "checkResults.html?phonenum="+jd.phone+"&country=nigeria";
+
+
+
+          var contactusUrl = document.getElementById('contact_us'); //or grab it by tagname etc
+         contactusUrl.href = "contact.html?phonenum="+jd.phone+"&country=nigeria";
+
+});
+        });
+
+
+
+
+   </script>
+ <script language="javascript" type="text/javascript">
+function test()
+{
+        var ExamNumber = document.getElementById("txtExamNumber");
+        var ExamYear = document.getElementById("drpExamYear");
+        var ExamType = document.getElementById("drpExamType");
+        var serial = document.getElementById("txtCardSerialNo");
+        var pin = document.getElementById("txtPIN");
+        if(trim(ExamNumber.value) == '')
+            {
+                alert('Examination Number cannot be blank');
+                return;
+            }
+            
+        if(trim(serial.value) == '')
+            {
+                alert('Serial Number cannot be blank');
+                return;
+            }
+          if(trim(pin.value) == '')
+            {
+                alert('PIN cannot be blank');
+                return;
+            }  
+        
+        var qrystr = '?ExamNumber=' + trim(ExamNumber.value) + '&ExamYear=' + ExamYear.value  + '&serial='  + trim(serial.value)  + '&pin='  + trim(pin.value)  + '&ExamType=' + ExamType.value;
+        //alert(qrystr);
+        window.open('DisplayResult.aspx' + qrystr, "", 'scrollbars,width=500,height=680');
+}
+
+function trim(str, chars) {
+
+    return ltrim(rtrim(str, chars), chars);
+
+}
+
+ 
+
+function ltrim(str, chars) {
+
+    chars = chars || "\\s";
+
+    return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+
+}
+
+ 
+
+function rtrim(str, chars) {
+
+    chars = chars || "\\s";
+
+    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+
+}
+
+
+</script>
+
+
+</head>
+<body onload="onLoad()">
+<div class="app">
+  
+
+  <!-- aside -->
+  <aside id="aside" class="app-aside modal fade folded" role="menu">
+    <div class="left">
+      <div class="box bg-white">
+        <div class="navbar md-whiteframe-z1 no-radius blue">
+            <!-- brand -->
+            <div class="navbar-item pull-left h4"></div>
+            <a class="navbar-brand">
+             
+              <img src="../images/logo.png" alt="." style="max-height: 36px;">
+              <!-- <span class="hidden-folded m-l inline">Rogha2016</span> -->
+            </a>
+            <!-- / brand -->
+        </div>
+        <div class="box-row">
+          <div class="box-cell scrollable hover">
+            <div class="box-inner">
+              <div class="p hidden-folded blue-50" style="background-image:url(../images/bg.png); background-size:cover">
+                <div class="rounded w-64 bg-white inline pos-rlt">
+                  <img src="../images/a0.jpg" class="img-responsive rounded" id="user_profile_img">
+                </div>
+                <a class="block m-t-sm" ui-toggle-class="hide, show" target="#nav, #account">
+                  <span class="block font-bold" id="logged_in_user"></span>
+                  <span class="pull-right auto">
+                    <i class="fa inline fa-caret-down"></i>
+                    <i class="fa none fa-caret-up"></i>
+                  </span>
+                  <span id="user_email"></span>
+                </a>
+              </div>
+              <div id="nav">
+
+                <nav ui-nav>
+                  <ul class="nav">
+                    <li class="nav-header m-v-sm hidden-folded">
+                      Menu
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="menu.html" id="menu">
+                        <span class="pull-right text-muted">
+                        </span>
+                        
+                        <i class="icon mdi-notification-folder-special i-20"></i>
+                        <span class="font-normal">Home</span>
+                      </a>
+                      
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="" id="buy_card">
+                        <span class="pull-right text-muted">
+                         
+                        </span>
+                        <i class="icon mdi-social-public i-20"></i>
+                        <span class="font-normal">Buy Cards</span>
+                      </a>
+                     
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="checkResults.html" id="check_results">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-social-whatshot i-20"></i>
+                        <span class="font-normal">Check WAEC Results</span>
+                      </a>
+                     
+                    </li>
+                  
+                   
+                   
+                  </ul>
+                </nav>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <nav>
+          <ul class="nav b-t b">
+            <li>
+              <a href="contact.html" id="contact_us" md-ink-ripple>
+                <i class="icon mdi-action-help i-20"></i>
+                <span>Help &amp; Feedback</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </aside>
+  <!-- / aside -->
+
+<!-- content -->
+  <div id="content" class="app-content" role="main">
+    <div class="box">
+          <!-- Content Navbar -->
+    <div class="navbar md-whiteframe-z1 no-radius blue">
+      <!-- Open side - Naviation on mobile -->
+      <a md-ink-ripple  data-toggle="modal" data-target="#aside" class="navbar-item pull-left visible-xs visible-sm"><i class="mdi-navigation-menu i-24"></i></a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      <div class="navbar-item pull-left h4">WAEC RESULTS CENTER - NIGERIA</div>
+      <!-- / -->
+      <!-- Common tools -->
+     
+      <div class="pull-right" ui-view="navbar@"></div>
+      <!-- / -->
+      <!-- Search form -->
+      <div id="search" class="pos-abt w-full h-full blue hide">
+        <div class="box">
+        
+        
+        
+        </div>
+      </div>
+      <!-- / -->
+    </div>
+    <!-- Content -->
+
+     <div class="box-row">
+        <div class="box-cell">
+          <div class="box-inner padding">
+            
+
+<div class="card" style="height: auto;">
+  <div class="card-heading" style="margin-left: 20px;">
+    <h2> </h2>
+  </div>USING THE RESULT CHECKER (User-Guide)
+
+  <div class="card-body">
+  <div class="arrow_box" style="display:none; margin-bottom: 20px; padding-left: 10px; padding-right: 10px;">
+      dfsbsfgbsgfsbbgfs
+    </div>
+    <div class="row row-sm">
+
+
+
+
+     <form  method="post" action="" id="form1">
+      <div class="col-sm-12">
+        <div class="md-form-group">
+         <!-- <p id="gcm_id"></p> -->
+          <label class="text-justify;">Enter your Index Number. <br>
+          <ul>
+          <li>Select the Type of Examination (e.g.  WASSCE).</li>
+<li>Select your Examination Year eg. 2003.</li>
+<li>Enter the Card Serial Number found on the reverse side of your Scratch card. 
+<li>Enter the 12-digit Personal Identification Number (PIN) on your Scratch card eg. 012345678912.
+<li>Confirm your Index Number and Examination Year. This is to ensure that your examination information is correct.
+<li>Click on Submit and wait for the display in the popup window. This may take several minutes.</li>
+
+</label>
+        </div>
+      </div>
+
+       
+
+<div class="card-heading">
+    <h2>Enter your examination information</h2>
+  </div>
+
+
+      
+      <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input"  type="text" id="txtExamNumber"  size="19" maxlength="10" placeholder="Index Number" autocomplete="off">
+             
+
+        </div>
+      </div>
+    
+
+      <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <select name="ExamType" id="drpExamType" class="md-input">
+             <option  selected="selected" value="MAY/JUNE WASSCE">MAY/JUNE WASSCE</option>
+            <option  value="NOV/DEC">NOV/DEC WASSCE (Private)</option>
+
+           </select>
+
+
+          
+        </div>
+      </div>
+
+
+
+
+
+         <div class="col-sm-12">
+        <div class="md-form-group float-label">
+           <select id="drpExamYear" class="md-input">
+                <option selected="selected">-- select year --</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+                <option value="2010">2010</option>
+                <option value="2009">2009</option>
+                <option value="2008">2008</option>
+                <option value="2007">2007</option>
+                <option value="2006">2006</option>
+                <option value="2005">2005</option>
+                 <option value="2004">2004</option>
+                 <option value="2003">2003</option>
+                  <option value="2002">2002</option>
+                  <option value="2001">2001</option>
+               <option value="2000">2000</option>
+              <option value="1999">1999</option>
+               <option value="1998">1998</option>
+               <option value="1997">1997</option>
+              <option value="1996">1996</option>
+               <option value="1995">1995</option>
+               <option value="1994">1994</option>
+               <option value="1993">1993</option>
+              <option value="1992">1992</option>
+              <option value="1991">1991</option>
+               <option value="1990">1990</option>
+          </select>
+
+
+          
+        </div>
+      </div>
+
+<div class="card-heading">
+    <h2>Enter your card security information</h2>
+  </div>
+
+           <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input  class="md-input" type="text"  id="txtCardSerialNo" size="19" maxlength="12" autocomplete="off" placeholder="Card Serial Number" />
+
+        </div>
+      </div>
+    
+
+
+       <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input" type="password" id="txtPIN" placeholder="pin" size="19" maxlength="12" autocomplete="off" class="PIN" />
+
+
+        </div>
+      </div>
+    
+
+
+
+ <input name="referpage" type="hidden" id="referpage" value="index.htm" />
+
+     <div class="p-v-lg text-center" style=" margin-top:20px;">
+      <div class="m-b">
+      <input name="Submit" type="button" value="Submit" id="checkresult" class="md-btn md-raised pink p-h-md" style="padding: 10px 30px; background: rgba(245, 76, 63, 0.89);">
+      <input name="Clear" type="reset" id="Clear" value="Clear"  class="md-btn md-raised pink p-h-md"  style="padding: 10px 30px; background: rgba(245, 76, 63, 0.89);"></div>
+
+      <br />
+          </div>
+    </form>
+     </div>
+
+  </div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / content -->
+<div id="dialog-confirm2" title="NEW POLICY ON ISSUANCE OF CERTIFICATES" style="display: none">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+        </p>
+        <ol>
+            <li>Certificates will be printed three months after release of results.</li>
+            <li>Candidates are to visit <a href="http://www.waecgh.org">www.waecgh.org</a> and request
+                for the printing of their certificates.</li>
+            <li>Certificates requested for and not claimed after three months will be destroyed.</li>
+        </ol>
+    </div>
+
+</div>
+
+
+<!-- <script src="../libs/jquery/jquery/dist/jquery.js"></script> -->
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../libs/jquery/waves/dist/waves.js"></script>
+
+<script src="../scripts/ui-load.js"></script>
+<script src="../scripts/ui-jp.config.js"></script>
+<script src="../scripts/ui-jp.js"></script>
+<script src="../scripts/ui-nav.js"></script>
+<script src="../scripts/ui-toggle.js"></script>
+<script src="../scripts/ui-form.js"></script>
+<script src="../scripts/ui-waves.js"></script>
+<script src="../scripts/ui-client.js"></script>
+
+<script type="text/javascript">
+ $(document).ready(function()
+ {
+    //Login Function
+    $("#checkresult").click(function(e){
+    	
+    	test(e);
+
+      
+  		cordova.InAppBrowser.open('http://www.waecdirect.org/DisplayResult.aspx', '_blank', 'location=yes');
+  
+    });
+
+ });
+ </script>
+
+</body>
+</html>

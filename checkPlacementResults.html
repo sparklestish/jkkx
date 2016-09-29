@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Check Results</title>
+  <meta name="format-detection" content="telephone=no">
+   <meta name="msapplication-tap-highlight" content="no">
+   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+   <meta charset="utf-8" />
+  <link rel="stylesheet" href="libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="libs/jquery/waves/dist/waves.css" type="text/css" />
+  <link rel="stylesheet" href="styles/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="styles/app.css" type="text/css" />
+  <script type="text/javascript" src="cordova.js"></script>
+  
+ <script type="text/javascript" src="inappbrowser.js"></script>
+  <script type="text/javascript" src="notification.js"></script>
+    <script type="text/javascript" src="scripts/jq.js"></script>
+   
+      <script type="text/javascript">
+   
+    // Wait for device API libraries to load
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function chkOnline()
+      {
+      //add your own functionalities, if user is online
+       
+      }
+      function chkOffline()
+      {
+      //add your own functionalities, if user is offline
+       window.location.href="noconnection.html";
+      }
+    // device APIs are available
+    function onDeviceReady() {
+        document.addEventListener("online",chkOnline,false);
+        document.addEventListener("offline",chkOffline,false);
+       
+    }
+
+    function exitFromApp()
+             {
+                navigator.app.exitApp();
+             }
+
+         function showAlert() {
+        navigator.notification.confirm(
+            'Are you sure you want to exit the app?',  // message
+            exitFromApp,         // callback
+            'Exit App',            // title
+            'Yes,No'                  // buttonName
+        );
+    }
+  </script>
+    
+
+<script type="text/javascript" language="javascript">
+
+   var phonenum = window.location.search.substring(10);
+ //alert(phonenum);
+     $(document).ready(function() {
+
+          $.getJSON('http://waecresultschecker.com/mobile/userinfodisplay.php?phonenum='+phonenum, function(jd) {  
+          
+           //   $('#logged_in_user').val(jd.username);
+           // $('#user_email').val(jd.email);
+         // document.getElementById('user_email').value = jd.username;
+      
+           $('#logged_in_user').html(jd.fullname);
+         $('#user_email').html(jd.email);
+      
+       var menucard = document.getElementById('menu'); //or grab it by tagname etc
+         menucard.href="menu.html?phonenum="+jd.phone+"&country=ghana";
+
+         var newbuycard = document.getElementById('buy_card'); //or grab it by tagname etc
+         newbuycard.href="checkout.html?phonenum="+jd.phone+"&country=ghana";
+
+          var newcheckresults = document.getElementById('check_results'); //or grab it by tagname etc
+         newcheckresults.href = "checkResults.html?phonenum="+jd.phone+"&country=ghana";
+
+ var newbuycard_placement = document.getElementById('buy_placementcard'); //or grab it by tagname etc
+         newbuycard_placement.href="checkout-placement.html?phonenum="+jd.phone+"&country=ghana";
+
+        var newcheckresults_placement = document.getElementById('check_placementresults'); //or grab it by tagname etc
+         newcheckresults_placement.href = "checkPlacementResults.html?phonenum="+jd.phone+"&country=ghana";
+
+          var newcheckoutone = document.getElementById('checkoutone'); //or grab it by tagname etc
+         newcheckoutone.href = "checkout-one.html?phonenum="+jd.phone+"&country=ghana";
+
+      var newcheckoutbulk = document.getElementById('checkoutbulk'); //or grab it by tagname etc
+         newcheckoutbulk.href = "checkout-bulk.html?phonenum="+jd.phone+"&country=ghana";
+
+
+          var contactusUrl = document.getElementById('contact_us'); //or grab it by tagname etc
+         contactusUrl.href = "contact.html?phonenum="+jd.phone+"&country=ghana";
+
+});
+        });
+
+
+
+
+   </script>
+
+
+   <style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 10px;
+    background-color: rgb(56, 67, 121);
+    color: white;
+}
+
+.modal-body {padding: 6px 16px;}
+
+.modal-footer {
+    padding: 2px 9px;
+    background-color: rgb(153, 153, 153);
+    color: white;
+}
+</style>
+</head>
+<body onload="onLoad()">
+<div class="app">
+  
+
+  <!-- aside -->
+  <aside id="aside" class="app-aside modal fade folded" role="menu">
+    <div class="left">
+      <div class="box bg-white">
+        <div class="navbar md-whiteframe-z1 no-radius blue">
+            <!-- brand -->
+            <div class="navbar-item pull-left h4"></div>
+            <a class="navbar-brand">
+             
+              <img src="images/logo.png" alt="." style="max-height: 36px;">
+              <!-- <span class="hidden-folded m-l inline">Rogha2016</span> -->
+            </a>
+            <!-- / brand -->
+        </div>
+        <div class="box-row">
+          <div class="box-cell scrollable hover">
+            <div class="box-inner">
+            <!--   <div class="p hidden-folded blue-50" style="background-image:url(images/bg.png); background-size:cover">
+                <div class="rounded w-64 bg-white inline pos-rlt">
+                  <img src="images/a0.jpg" class="img-responsive rounded" id="user_profile_img">
+                </div>
+                <a class="block m-t-sm" ui-toggle-class="hide, show" target="#nav, #account">
+                  <span class="block font-bold" id="logged_in_user"></span>
+                  <span class="pull-right auto">
+                    <i class="fa inline fa-caret-down"></i>
+                    <i class="fa none fa-caret-up"></i>
+                  </span>
+                  <span id="user_email"></span>
+                </a>
+              </div> -->
+              <div id="nav">
+
+                <nav ui-nav>
+                  <ul class="nav">
+                       <li class="nav-header m-v-sm hidden-folded">
+                      Menu
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="menu.html" id="menu">
+                        <span class="pull-right text-muted">
+                        </span>
+                        
+                        <i class="icon mdi-action-home i-20"></i>
+                        <span class="font-normal">Home</span>
+                      </a>
+                      
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="checkout.html" id="buy_card">
+                        <span class="pull-right text-muted">
+                         
+                        </span>
+                        <i class="icon mdi-action-credit-card i-20"></i>
+                        <span class="font-normal">Waec Checker Cards</span>
+                      </a>
+                     
+                    </li>
+
+                       <li>
+                      <a md-ink-ripple href="checkout-placement.html" id="buy_placementcard">
+                        <span class="pull-right text-muted">
+                         
+                        </span>
+                        <i class="icon mdi-action-wallet-membership i-20"></i>
+                        <span class="font-normal">Placement Cards</span>
+                      </a>
+                     
+                    </li>
+
+                    <li>
+                      <a md-ink-ripple href="checkResults.html" id="check_results">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-action-description i-20"></i>
+                        <span class="font-normal">Check WAEC Results</span>
+                      </a>
+                     
+                    </li>
+
+                     <li>
+                      <a md-ink-ripple href="checkPlacementResults.html" id="check_placementresults">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-editor-insert-drive-file i-20"></i>
+                        <span class="font-normal">My Placement Results</span>
+                      </a>
+                     
+                    </li>
+
+                       <li>
+                      <a md-ink-ripple href="#"  id="myBtn">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-action-settings-power i-20"></i>
+                        <span class="font-normal">Exit App</span>
+                      </a>
+                     
+                    </li>
+
+                      <li>
+                      <a md-ink-ripple href="#"  id="myBtn">
+                    
+                        <span class="font-normal">call us on 0238459310, 0246827049, 0541517784.</span>
+                      </a>
+                     
+                    </li>
+                  
+                  
+                  
+                   
+                   
+                  </ul>
+                </nav>
+
+                      <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Rate / Like Us</h2>
+    </div>
+    <div class="modal-body">
+      <p>How has your experience being so far using this app? Take out some time to rate us and like our page.</p>
+      <p>
+
+<center>
+      <div class="m-b">
+            <button type="button"  class="md-btn md-raised pink p-h-md has-value" id="facebook" style="padding: 10px; background: #133d9a;"> <i class="fa fa-facebook-square"></i> &nbsp;Like Us On Facebook</button>
+         </div>
+
+         <div class="m-b">
+            <button type="button" class="md-btn md-raised pink p-h-md has-value" id="playstore" style="padding: 10px; background: rgba(245, 76, 63, 0.89);"> <i class="fa fa-google-plus-square"></i> &nbsp;Google Play Store </button>
+         </div>
+
+<div class="m-b">
+            <button type="button" class="md-btn md-raised pink p-h-md has-value" id="exit" onclick="showAlert(); return false;" style="padding: 10px ; background: rgba(245, 155, 63, 0.89);"> <i class="fa fa-google-plus-square"></i> &nbsp;Exit From App</button>
+         </div>
+         </center>
+        
+         </p>
+    </div>
+    <div class="modal-footer">
+      <h6>&copy; &nbsp;www.waecresultschecker.com &reg;</h6>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <nav>
+          <ul class="nav b-t b">
+            <li>
+              <a href="contact.html" id="contact_us" md-ink-ripple>
+                <i class="icon mdi-action-help i-20"></i>
+                <span>Help &amp; Feedback</span>
+              </a>
+            </li>
+                <li>
+              <a href="https://www.facebook.com/WaecResultsCheckers" target="_blank" id="contact_us" md-ink-ripple>
+                <i class="icon mdi-action-help i-20"></i>
+                <span>Visit Our Facebook Page</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </aside>
+  <!-- / aside -->
+
+<!-- content -->
+  <div id="content" class="app-content" role="main">
+    <div class="box">
+          <!-- Content Navbar -->
+    <div class="navbar md-whiteframe-z1 no-radius blue">
+      <!-- Open side - Naviation on mobile -->
+      <a md-ink-ripple  data-toggle="modal" data-target="#aside" class="navbar-item pull-left visible-xs visible-sm"><i class="mdi-navigation-menu i-24"></i></a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      <div class="navbar-item pull-left h4">Placement Results</div>
+      <!-- / -->
+      <!-- Common tools -->
+     
+      <div class="pull-right" ui-view="navbar@"></div>
+      <!-- / -->
+      <!-- Search form -->
+      <div id="search" class="pos-abt w-full h-full blue hide">
+        <div class="box">
+        
+        
+        
+        </div>
+      </div>
+      <!-- / -->
+    </div>
+    <!-- Content -->
+
+     <div class="box-row">
+        <div class="box-cell">
+          <div class="box-inner padding">
+            
+
+<div class="card" style="height: auto;">
+  <div class="card-heading" style="margin-left: 20px;">
+    <h2> </h2>
+  </div>USING THE PLACEMENT STATUS CHECKER (User-Guide)
+
+  <div class="card-body">
+  <div class="arrow_box" style="display:none; margin-bottom: 20px; padding-left: 10px; padding-right: 10px;">
+      dfsbsfgbsgfsbbgfs
+    </div>
+    <div class="row row-sm">
+
+
+
+
+     <form  method="get" name="form1" id="form1" >
+      <div class="col-sm-12">
+        <div class="md-form-group">
+         <!-- <p id="gcm_id"></p> -->
+          <label class="text-justify;"> <br>
+          <ul>
+          <li>Enter your 10-digits BECE index number. Add the last two digits of the year of examination eg. XXXXXXXXXX15 for 2015.
+</li>
+<li>Enter the Card Serial Number found on the top of your Scratch card.</li>
+<li>Enter the Personal Identification Number (PIN) on your Scratch card.
+<li>Click Submit and wait for the results window to come up.
+
+
+
+
+
+
+</label>
+        </div>
+      </div>
+
+       
+
+
+
+<div class="card-heading">
+    <h2>Fill the following</h2>
+  </div>
+
+           <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input name="indexno" type="text" id="indexno"  maxlength="12" class="md-input"  autocomplete="off" placeholder="Index Number" />
+
+        </div>
+      </div>
+    
+
+
+       <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input name="serial" type="text" id="serial" maxlength="8" class="md-input"  placeholder="Serial Number" autocomplete="off"/>
+
+
+        </div>
+      </div>
+    
+
+
+       <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input" name="pin" type="password" id="pin"  maxlength="10" placeholder="Index Number" autocomplete="off">
+             
+
+        </div>
+      </div>
+    
+
+
+
+    
+
+     
+
+
+
+     <div class="p-v-lg text-center" style=" margin-top:20px;">
+      <div class="m-b">
+      <input name="Submit" type="button" value="Submit" id="checkresult" class="md-btn md-raised pink p-h-md" style="padding: 10px ; background: rgba(245, 76, 63, 0.89);">
+      <input name="Clear" type="reset" id="Clear" value="Clear"  class="md-btn md-raised pink p-h-md"  style="padding: 10px ; background: rgba(245, 76, 63, 0.89);"></div>
+
+      <br />
+          </div>
+    </form>
+     </div>
+
+  </div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / content -->
+</div>
+
+  <script type="text/javascript">
+      function SetPopUp() {
+                                                    // displayresults('http://ghana.waecdirect.org/results.asp', '_self', 'location=yes');
+                                                }
+
+                                                function displayresults(pgurl, target, location) {
+                                                    // report = window.open('http://ghana.waecdirect.org/results.asp', '_blank', 'location=yes');
+                                                    // report = cordova.InAppBrowser.open('http://ghana.waecdirect.org/results.asp', '_self', 'location=yes');
+                                                    
+                                                    // report.focus();
+                                                }
+                      function form_submit(e) {
+                                                    var indexno = String(document.form1.indexno.value);
+                                                    
+                                                    var serial = String(document.form1.serial.value);
+                                                    var pin = String(document.form1.pin.value);
+
+                                                    if (indexno.length < 12) {
+                                                        alert("Invalid Index Number entered!\nIndex Number must not be less than 12 digits.");
+                                                        document.form1.indexno.focus();
+                                                        return false;
+                                                    }
+                                                   
+                                                    if (serial.length < 8) {
+                                                        alert("Invalid Serial Number format!\nSerial Numbers must contain a character prefix and must be up to 8 digits e.g. G1234567.");
+                                                        document.form1.serial.focus();
+                                                        return false;
+                                                    }
+                                                    if (pin.length != 10) {
+                                                        alert("Invalid PIN format!\nPIN is a 10 digit number e.g. 1234567890.");
+                                                        document.form1.pin.focus();
+                                                        return false;
+                                                    }
+
+                                            
+
+                                                    // displayresults('http://ghana.waecdirect.org/results.asp', '_self', 'location=yes');
+                                                    return true;
+
+                                                }
+    </script>
+
+<!-- <script src="libs/jquery/jquery/dist/jquery.js"></script> -->
+<script src="libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="libs/jquery/waves/dist/waves.js"></script>
+
+<script src="scripts/ui-load.js"></script>
+<script src="scripts/ui-jp.config.js"></script>
+<script src="scripts/ui-jp.js"></script>
+<script src="scripts/ui-nav.js"></script>
+<script src="scripts/ui-toggle.js"></script>
+<script src="scripts/ui-form.js"></script>
+<script src="scripts/ui-waves.js"></script>
+<script src="scripts/ui-client.js"></script>
+
+<script type="text/javascript">
+ $(document).ready(function()
+ {
+
+     $("#facebook").click(function(event) {
+            
+                    alert("Redirecting to our facebook page...");
+                    var ref = cordova.InAppBrowser.open('https://www.facebook.com/WaecResultsCheckers', '_blank', 'location=yes');  
+                   });
+
+
+           $("#playstore").click(function(event) {
+            
+                    alert("Redirecting to our playstore app page...");
+                    var ref = cordova.InAppBrowser.open('https://play.google.com/store/apps/details?id=com.waecresultscheckercenter.app', '_blank', 'location=yes');  
+                   });
+
+    //Login Function
+    $("#checkresult").click(function(e){
+    	
+    	form_submit(e);
+
+      
+  		cordova.InAppBrowser.open('http://myjhsresult.net/jhs/authenticate.php', '_blank', 'location=yes');
+  
+    });
+
+ });
+ </script>
+
+</body>
+</html>

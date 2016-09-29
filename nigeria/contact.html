@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="../libs/jquery/waves/dist/waves.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/app.css" type="text/css" />
+  <script src="../scripts/modernizr.touch.js"></script>
+  <link href="../styles/index.css" rel="stylesheet">
+ <link href="../styles/mfb.css" rel="stylesheet">
+ <script type="text/javascript" src="../cordova.js"></script>
+ <script type="text/javascript" src="../scripts/jq.js"></script>
+    <script type="text/javascript">
+   
+    // Wait for device API libraries to load
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function chkOnline()
+      {
+      //add your own functionalities, if user is online
+       
+      }
+      function chkOffline()
+      {
+      //add your own functionalities, if user is offline
+       window.location.href="noconnection.html";
+      }
+    // device APIs are available
+    function onDeviceReady() {
+        document.addEventListener("online",chkOnline,false);
+        document.addEventListener("offline",chkOffline,false);
+       
+    }
+  </script>
+    
+
+
+<script type="text/javascript" language="javascript">
+
+   var phonenum = window.location.search.substring(10);
+ //alert(phonenum);
+     $(document).ready(function() {
+
+          $.getJSON('http://waecresultschecker.com/mobile/userinfodisplay.php?phonenum='+phonenum, function(jd) {  
+          
+           //   $('#logged_in_user').val(jd.username);
+           // $('#user_email').val(jd.email);
+         // document.getElementById('user_email').value = jd.username;
+      
+           $('#logged_in_user').html(jd.fullname);
+         $('#user_email').html(jd.email);
+      
+       var menucard = document.getElementById('menu'); //or grab it by tagname etc
+         menucard.href="menu.html?phonenum="+jd.phone+"&country=nigeria";
+
+         var newbuycard = document.getElementById('buy_card'); //or grab it by tagname etc
+         newbuycard.href="checkout.html?phonenum="+jd.phone+"&country=nigeria";
+
+          var newcheckresults = document.getElementById('check_results'); //or grab it by tagname etc
+         newcheckresults.href = "checkResults.html?phonenum="+jd.phone+"&country=nigeria";
+
+ var newbuycard_placement = document.getElementById('buy_placementcard'); //or grab it by tagname etc
+         newbuycard_placement.href="checkout-placement.html?phonenum="+jd.phone+"&country=nigeria";
+
+        var newcheckresults_placement = document.getElementById('check_placementresults'); //or grab it by tagname etc
+         newcheckresults_placement.href = "checkPlacementResults.html?phonenum="+jd.phone+"&country=nigeria";
+
+          var newcheckoutone = document.getElementById('checkoutone'); //or grab it by tagname etc
+         newcheckoutone.href = "checkout-one.html?phonenum="+jd.phone+"&country=nigeria";
+
+      var newcheckoutbulk = document.getElementById('checkoutbulk'); //or grab it by tagname etc
+         newcheckoutbulk.href = "checkout-bulk.html?phonenum="+jd.phone+"&country=nigeria";
+
+
+          var contactusUrl = document.getElementById('contact_us'); //or grab it by tagname etc
+         contactusUrl.href = "contact.html?phonenum="+jd.phone+"&country=nigeria";
+
+});
+        });
+
+
+
+
+   </script>
+
+         <style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 10px;
+    background-color: rgb(56, 67, 121);
+    color: white;
+}
+
+.modal-body {padding: 6px 16px;}
+
+.modal-footer {
+    padding: 2px 9px;
+    background-color: rgb(153, 153, 153);
+    color: white;
+}
+</style>
+</head>
+<body onload="onLoad();">
+
+<div class="app">
+    
+  <!-- aside -->
+  <aside id="aside" class="app-aside modal fade folded" role="menu">
+    <div class="left">
+      <div class="box bg-white">
+        <div class="navbar md-whiteframe-z1 no-radius blue">
+            <!-- brand -->
+            <a class="navbar-brand">
+             
+              <img src="images/logo.png" alt="." style="max-height: 36px;">
+              <!-- <span class="hidden-folded m-l inline">Rogha2016</span> -->
+            </a>
+            <!-- / brand -->
+        </div>
+        <div class="box-row">
+          <div class="box-cell scrollable hover">
+            <div class="box-inner">
+         <!--      <div class="p hidden-folded blue-50" style="background-image:url(images/bg.png); background-size:cover">
+                <div class="rounded w-64 bg-white inline pos-rlt">
+                  <img src="images/a0.jpg" class="img-responsive rounded" id="user_profile_img">
+                </div>
+                <a class="block m-t-sm" ui-toggle-class="hide, show" target="#nav, #account">
+                  <span class="block font-bold" id="logged_in_user"></span>
+                  <span class="pull-right auto">
+                    <i class="fa inline fa-caret-down"></i>
+                    <i class="fa none fa-caret-up"></i>
+                  </span>
+                  <span id="user_email"></span>
+                </a>
+              </div> -->
+              <div id="nav">
+
+
+
+
+
+                 <nav ui-nav>
+                  <ul class="nav">
+                    <li class="nav-header m-v-sm hidden-folded">
+                      Menu
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="menu.html" id="menu">
+                        <span class="pull-right text-muted">
+                        </span>
+                        
+                        <i class="icon mdi-action-home i-20"></i>
+                        <span class="font-normal">Home</span>
+                      </a>
+                      
+                    </li>
+                    <li>
+                      <a md-ink-ripple href="checkout.html" id="buy_card">
+                        <span class="pull-right text-muted">
+                         
+                        </span>
+                        <i class="icon mdi-action-credit-card i-20"></i>
+                        <span class="font-normal">Waec Checker Cards</span>
+                      </a>
+                     
+                    </li>
+
+                       <li>
+                      <a md-ink-ripple href="checkout-placement.html" id="buy_placementcard">
+                        <span class="pull-right text-muted">
+                         
+                        </span>
+                        <i class="icon mdi-action-wallet-membership i-20"></i>
+                        <span class="font-normal">Placement Cards</span>
+                      </a>
+                     
+                    </li>
+
+                    <li>
+                      <a md-ink-ripple href="checkResults.html" id="check_results">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-action-description i-20"></i>
+                        <span class="font-normal">Check WAEC Results</span>
+                      </a>
+                     
+                    </li>
+
+                     <li>
+                      <a md-ink-ripple href="checkPlacementResults.html" id="check_placementresults">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-editor-insert-drive-file i-20"></i>
+                        <span class="font-normal">My Placement Results</span>
+                      </a>
+                     
+                    </li>
+                  
+                     <li>
+                      <a md-ink-ripple href="#"  id="myBtn">
+                        <span class="pull-right text-muted">
+                          
+                        </span>
+                        <i class="icon mdi-action-settings-power i-20"></i>
+                        <span class="font-normal">Exit App</span>
+                      </a>
+                     
+                    </li>
+                   
+                  </ul>
+                </nav>
+                  <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Rate / Like Us</h2>
+    </div>
+    <div class="modal-body">
+      <p>How has your experience being so far using this app? Take out some time to rate us and like our page.</p>
+      <p>
+
+      <div class="m-b">
+            <button type="button"  class="md-btn md-raised pink p-h-md has-value" id="facebook" style="padding: 10px ; background: #133d9a;"> <i class="fa fa-facebook-square"></i> &nbsp;Like Us On Facebook</button>
+         </div>
+
+         <div class="m-b">
+            <button type="button" class="md-btn md-raised pink p-h-md has-value" id="playstore" style="padding: 10px ; background: rgba(245, 76, 63, 0.89);"> <i class="fa fa-google-plus-square"></i> &nbsp;Google Play Store </button>
+         </div>
+
+
+        
+
+         </p>
+    </div>
+    <div class="modal-footer">
+      <h6>&copy; &nbsp;www.waecresultschecker.com &reg;</h6>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <nav>
+          <ul class="nav b-t b">
+            <li>
+              <a href="contact.html" id="contact_us" md-ink-ripple>
+                <i class="icon mdi-action-help i-20"></i>
+                <span>Help &amp; Feedback</span>
+              </a>
+            </li>
+             
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </aside>
+  <!-- / aside -->
+  
+
+
+  <!-- content -->
+  <div id="content" class="app-content" role="main">
+    <div class="box">
+          <!-- Content Navbar -->
+    <div class="navbar md-whiteframe-z1 no-radius blue">
+      <!-- Open side - Naviation on mobile -->
+      <a md-ink-ripple  data-toggle="modal" data-target="#aside" class="navbar-item pull-left visible-xs visible-sm"><i class="mdi-navigation-menu i-24"></i></a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      <div class="navbar-item pull-left h4"> WAEC RESULTS CENTER</div>
+      <!-- / -->
+      <!-- Common tools -->
+
+      <div class="pull-right" ui-view="navbar@"></div>
+      <!-- / -->
+      <!-- Search form -->
+     
+      <!-- / -->
+    </div>
+    <!-- Content -->
+
+      <div class="box-row">
+        <div class="box-cell">
+          <div class="box-inner padding">
+            
+
+  <div class="row">
+    <div class="col-sm-6" style="width: 100%;">
+      <!-- <div class="card">
+        <form>
+          <textarea class="form-control no-border p-md" rows="1" placeholder="Write something..."></textarea>
+        </form>
+        <div class="lt p">
+          <button md-ink-ripple class="md-btn md-raised pull-right p-h-md green">Post</button>
+          <ul class="nav nav-pills nav-sm">
+            <li><a href><i class="fa fa-camera"></i></a></li>
+            <li><a href><i class="fa fa-video-camera"></i></a></li>
+          </ul>
+        </div>
+      </div> -->
+     
+<form  method="get">
+      <div class="row row-sm">
+        <div class="col-sm-12"  >
+          <div class="card" style="width: 100%;">
+           
+           
+            <div class="item"  id="postimage" style="height: 950px;">
+             <div class="card-body" style="margin-bottom: -40px;">
+             
+               
+   <div class="card-heading">
+    <h2>Kindly fill the form below</h2>
+  </div>
+
+
+   <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input" name="name" type="text" id="name" size="19" placeholder="Full Name" autocomplete="off" required="required">
+             
+
+        </div>
+      </div>
+
+   <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input" name="phone" type="text" id="phone" size="19" maxlength="10" placeholder="Phone Number" autocomplete="off" required="required">
+             
+
+        </div>
+      </div>
+
+
+        <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <input class="md-input" name="email" type="email" id="email" size="19" placeholder="Email Address" autocomplete="off" required="required">
+             
+
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-12">
+        <div class="md-form-group float-label">
+          <textarea  class="md-input" name="message" id="message" rows="4"  cols="6" required="required">Type your message</textarea>
+             
+
+        </div>
+      </div>
+
+
+      <div class="m-b">
+      <input name="Submit" id="submit" type="submit" value="Submit"  class="md-btn md-raised pink p-h-md" style="padding: 10px 30px; background: rgba(245, 76, 63, 0.89);">
+      <input name="Clear" type="reset" id="Clear" value="Clear"  class="md-btn md-raised pink p-h-md"  style="padding: 10px 30px; background: rgba(245, 76, 63, 0.89);"></div>
+
+
+            </div>
+       
+            </div>
+           
+          </div>
+          </a>
+        </div>
+        </div>
+        </form>
+
+       <!--  <a href="" class="md-btn md-fab md-fab-bottom-right pos-fix teal"><i class="mdi-editor-mode-edit i-24"></i></a> -->
+      </div>
+      <div class="text-center m-b">
+          <i class="fa fa-circle-o-notch fa-spin text-lg text-muted-lt"></i>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      
+      <!-- <div class="card">
+        <div class="card-heading">
+          <h2 class="font-thin">Interesting People</h2>
+          <small>Follow your favorites</small>
+        </div>
+        <div class="card-tools">
+          <ul class="list-inline">
+            <li class="dropdown">
+              <a md-ink-ripple data-toggle="dropdown" class="md-btn md-flat md-btn-circle">
+                <i class="mdi-navigation-more-vert text-md"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-scale pull-right pull-up top text-color">
+                <li><a href>Action</a></li>
+                <li><a href>Another action</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <a href class="m-r-xs inline">
+            <img src="images/a4.jpg" class="w-40 img-circle">
+          </a>
+          <a href class="m-r-xs inline">
+            <img src="images/a5.jpg" class="w-40 img-circle">
+          </a>
+          <a href class="m-r-xs inline">
+            <img src="images/a6.jpg" class="w-40 img-circle">
+          </a>
+          <a href class="m-r-xs inline">
+            <img src="images/a7.jpg" class="w-40 img-circle">
+          </a>
+          <a class="btn btn-rounded btn-info">99+</a>
+        </div>
+      </div> -->
+      
+
+ 
+      </ul>
+    </div>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / content -->
+
+
+    </div>
+  </div>
+
+ 
+    </div>
+  </div>
+
+
+</div>
+
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../libs/jquery/waves/dist/waves.js"></script>
+
+<script src="../scripts/ui-load.js"></script>
+<script src="../scripts/ui-jp.config.js"></script>
+<script src="../scripts/ui-jp.js"></script>
+<script src="../scripts/ui-nav.js"></script>
+<script src="../scripts/ui-toggle.js"></script>
+<script src="../scripts/ui-form.js"></script>
+<script src="../scripts/ui-waves.js"></script>
+<script src="../scripts/ui-client.js"></script>
+
+ <script src="../scripts/mfb.js"></script>
+  <!-- endbuild -->
+  
+
+
+<script type="text/javascript">
+ $(document).ready(function()
+ {
+
+
+   $("#facebook").click(function(event) {
+            
+                    alert("Redirecting to our facebook page...");
+                    var ref = cordova.InAppBrowser.open('https://www.facebook.com/WaecResultsCheckers', '_blank', 'location=yes');  
+                   });
+
+
+           $("#playstore").click(function(event) {
+            
+                    alert("Redirecting to our playstore app page...");
+                    var ref = cordova.InAppBrowser.open(' ', '_blank', 'location=yes');  
+                   });
+
+           
+    //Login Function
+    $("#submit").click(function(){
+      
+//              $( "#loginform" ).click(function( event ) {
+//   event.preventDefault();
+ 
+// });
+    
+      var fullname=$("#name").val();
+      var email=$("#email").val();
+      var phone=$("#phone").val();
+      var message=$("#message").val();
+      var dataString="name="+fullname+"&phone="+phone+"&email="+email+"&message="+message;
+   
+      if($.trim(phone).length>0 && $.trim(fullname).length>0)
+    {
+      $.ajax({
+        type: "GET",
+        url: "http://waecresultschecker.com/mobile/contact.php",
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        dataType:'json',
+        beforeSend: function(){ $("#submit").val('please wait...');},
+        success: function(data){
+          if(data.success == false) 
+                {  
+                   //  alert(dataString);
+            $(".arrow_box").css("display", "block");
+            $(".arrow_box").html('Unable to process request. please try again later');
+            //alert("Login error");
+            setTimeout(function() {
+            $('.arrow_box').fadeOut('slow');
+            }, 4000);
+            $("#submit").val('Submit');
+                } 
+                else { 
+            $(".arrow_box").css("display", "block");
+            $(".arrow_box").html('Succesfully submited your mesage. We will be in touch soon.');
+            var URL = "menu.html?phonenum="+phone;
+            setTimeout(function(){ window.location = URL; }, 2000);
+                      
+                    }  
+        }
+      });
+    }return false;
+
+    });
+ });
+ </script>
+</body>
+</html>
